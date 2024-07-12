@@ -27,7 +27,7 @@ interface APIEspectador {
     fun getEspectadorByToken(
         @Header("Authorization") token: String,
         @Path("token") tokenEspectador: String
-    ): Call<Espectador>
+    ): Call<Espectadores>
 
     @POST("espectadores")
     fun addEspectador(
@@ -51,11 +51,11 @@ interface APIEspectador {
     @POST("espectadores/login")
     fun loginEspectador(
         @Body espectador: Espectador
-    ): Call<Espectador>
+    ): Call<Espectadores>
 
     @POST("espectadores/register")
     fun registerEspectador(
         @Body espectador: Espectador
-    ): Call<Espectador>
+    ): Call<Espectadores>
 
 }

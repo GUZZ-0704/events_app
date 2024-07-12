@@ -53,16 +53,16 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/lblAddress"
+                    android:id="@+id/lblPlace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Direccion"
+                    android:text="Lugar"
                     android:textSize="16sp"
                     android:textStyle="bold|italic" />
 
                 <TextView
-                    android:id="@+id/txtAddress"
+                    android:id="@+id/txtPlace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -156,6 +156,32 @@
                     android:hint="Nombre"
                     android:inputType="text" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lblAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Direccion"
+                    android:textSize="16sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:enabled="false"
+                    android:hint="Nombre"
+                    android:inputType="text" />
+            </LinearLayout>
+
         </LinearLayout>
 
 
@@ -176,6 +202,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:backgroundTint="#2A3F47"
             android:text="Reservar" />
     </LinearLayout>
 
@@ -192,8 +219,10 @@
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <LinearLayout
+        android:id="@+id/layoutReservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         android:orientation="vertical"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -211,26 +240,7 @@
         <RadioGroup
             android:id="@+id/rdgTipoTicket"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/rbtnNormal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Normal" />
-
-            <RadioButton
-                android:id="@+id/rbtnVIP"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="VIP" />
-
-            <RadioButton
-                android:id="@+id/rbtnSuperVIP"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Super VIP" />
-        </RadioGroup>
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/lblPrecio"
@@ -241,8 +251,7 @@
         <TextView
             android:id="@+id/txtPrecio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="100" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/lblCantidad"
@@ -255,12 +264,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="number"
+            android:text="1" />
 
         <Button
             android:id="@+id/btnReservar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="#2A3F47"
             android:text="Reservar" />
     </LinearLayout>
 

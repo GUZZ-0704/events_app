@@ -15,7 +15,6 @@ interface APITipoTicket {
 
     @GET("tipotickets")
     fun getAllTipoTickets(
-        @Header("Authorization") token: String
     ): Call<TipoTickets>
 
     @GET("tipotickets/{id}")

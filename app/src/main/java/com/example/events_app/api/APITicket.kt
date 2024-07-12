@@ -9,41 +9,41 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Path
 
 interface APITicket {
     @GET("tickets")
     fun getTickets(
-        @Header("Authorization") token: String
     ): Call<Tickets>
 
     @GET("tickets/{id}")
     fun getTicketById(
-        @Header("Authorization") token: String,
-        @Header("id") id: Int
-    ): Call<Ticket>
+        @Path("id") id: Int
+    ): Call<Tickets>
 
     @GET("tickets/espectador/{id}")
     fun getTicketsByEspectador(
-        @Header("Authorization") token: String,
-        @Header("id") id: Int
+        @Path("id") id: Int
     ): Call<Tickets>
 
     @POST("tickets")
     fun addTicket(
-        @Header("Authorization") token: String,
         @Body ticket: Ticket
-    ): Call<Ticket>
+    ): Call<Tickets>
 
     @DELETE("tickets/{id}")
     fun deleteTicket(
-        @Header("Authorization") token: String,
-        @Header("id") id: Int
+        @Path("id") id: Int
     ): Call<Void>
 
     @PUT("tickets/{id}")
     fun updateTicket(
-        @Header("Authorization") token: String,
         @Body ticket: Ticket,
-        @Header("id") id: Int
+        @Path("id") id: Int
     ): Call<Ticket>
+
+    @GET("tickets/evento/{id}")
+    fun getTicketComplete(
+        @Path("id") id: Int
+    ): Call<Tickets>
 }

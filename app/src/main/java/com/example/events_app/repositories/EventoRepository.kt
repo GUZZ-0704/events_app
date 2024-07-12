@@ -28,48 +28,48 @@ object EventoRepository {
     }
 
     fun getEvento(eventoId: Int, success: (Evento?) -> Unit, failure: (Throwable) -> Unit) {
-        service.getEventoById(eventoId).enqueue(object : Callback<Evento> {
-            override fun onResponse(res: Call<Evento>, response: Response<Evento>) {
+        service.getEventoById(eventoId).enqueue(object : Callback<Eventos> {
+            override fun onResponse(res: Call<Eventos>, response: Response<Eventos>) {
                 if (response.isSuccessful) {
-                    success(response.body())
+                    success(response.body()?.get(0))
                 } else {
                     failure(Exception("Failed to load evento"))
                 }
             }
 
-            override fun onFailure(res: Call<Evento>, t: Throwable) {
+            override fun onFailure(res: Call<Eventos>, t: Throwable) {
                 failure(t)
             }
         })
     }
 
     fun addEvento(token: String, evento: Evento, success: (Evento?) -> Unit, failure: (Throwable) -> Unit) {
-        service.addEvento(token, evento).enqueue(object : Callback<Evento> {
-            override fun onResponse(res: Call<Evento>, response: Response<Evento>) {
+        service.addEvento(token, evento).enqueue(object : Callback<Eventos> {
+            override fun onResponse(res: Call<Eventos>, response: Response<Eventos>) {
                 if (response.isSuccessful) {
-                    success(response.body())
+                    success(response.body()?.get(0))
                 } else {
                     failure(Exception("Failed to add evento"))
                 }
             }
 
-            override fun onFailure(res: Call<Evento>, t: Throwable) {
+            override fun onFailure(res: Call<Eventos>, t: Throwable) {
                 failure(t)
             }
         })
     }
 
     fun updateEvento(token: String, evento: Evento, eventoId: Int, success: (Evento?) -> Unit, failure: (Throwable) -> Unit) {
-        service.updateEvento(token, evento, eventoId).enqueue(object : Callback<Evento> {
-            override fun onResponse(res: Call<Evento>, response: Response<Evento>) {
+        service.updateEvento(token, evento, eventoId).enqueue(object : Callback<Eventos> {
+            override fun onResponse(res: Call<Eventos>, response: Response<Eventos>) {
                 if (response.isSuccessful) {
-                    success(response.body())
+                    success(response.body()?.get(0))
                 } else {
                     failure(Exception("Failed to update evento"))
                 }
             }
 
-            override fun onFailure(res: Call<Evento>, t: Throwable) {
+            override fun onFailure(res: Call<Eventos>, t: Throwable) {
                 failure(t)
             }
         })
@@ -156,32 +156,32 @@ object EventoRepository {
     }
 
     fun getAsignarLugarEvento(token: String, eventoId: Int, lugarId: Int, success: (Evento?) -> Unit, failure: (Throwable) -> Unit) {
-        service.getAsignarLugarEvento(token, eventoId, lugarId).enqueue(object : Callback<Evento> {
-            override fun onResponse(res: Call<Evento>, response: Response<Evento>) {
+        service.getAsignarLugarEvento(token, eventoId, lugarId).enqueue(object : Callback<Eventos> {
+            override fun onResponse(res: Call<Eventos>, response: Response<Eventos>) {
                 if (response.isSuccessful) {
-                    success(response.body())
+                    success(response.body()?.get(0))
                 } else {
                     failure(Exception("Failed to asignar lugar evento"))
                 }
             }
 
-            override fun onFailure(res: Call<Evento>, t: Throwable) {
+            override fun onFailure(res: Call<Eventos>, t: Throwable) {
                 failure(t)
             }
         })
     }
 
     fun getPatrocinadoresEvento(token: String, eventoId: Int, success: (Evento?) -> Unit, failure: (Throwable) -> Unit) {
-        service.getPatrocinadoresEvento(token, eventoId).enqueue(object : Callback<Evento> {
-            override fun onResponse(res: Call<Evento>, response: Response<Evento>) {
+        service.getPatrocinadoresEvento(token, eventoId).enqueue(object : Callback<Eventos> {
+            override fun onResponse(res: Call<Eventos>, response: Response<Eventos>) {
                 if (response.isSuccessful) {
-                    success(response.body())
+                    success(response.body()?.get(0))
                 } else {
                     failure(Exception("Failed to get patrocinadores evento"))
                 }
             }
 
-            override fun onFailure(res: Call<Evento>, t: Throwable) {
+            override fun onFailure(res: Call<Eventos>, t: Throwable) {
                 failure(t)
             }
         })

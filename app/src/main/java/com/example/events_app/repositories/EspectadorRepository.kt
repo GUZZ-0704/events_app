@@ -1,5 +1,6 @@
 package com.example.events_app.repositories
 
+import android.util.Log
 import com.example.events_app.api.APIEspectador
 import com.example.events_app.models.Espectador
 import com.example.events_app.models.Espectadores
@@ -44,16 +45,17 @@ object EspectadorRepository {
     }
 
     fun getEspectadorByToken(token: String, tokenEspectador: String, success: (Espectador?) -> Unit, failure: (Throwable) -> Unit) {
-        service.getEspectadorByToken(token, tokenEspectador).enqueue(object : Callback<Espectador> {
-            override fun onResponse(res: Call<Espectador>, response: Response<Espectador>) {
+        service.getEspectadorByToken(token, tokenEspectador).enqueue(object : Callback<Espectadores> {
+            override fun onResponse(res: Call<Espectadores>, response: Response<Espectadores>) {
                 if (response.isSuccessful) {
-                    success(response.body())
+                    success(response.body()?.get(0))
                 } else {
+                    Log.e("EspectadorRepository", "Failed to load espectador. Response code: ${response.code()}, Message: ${response.message()}")
                     failure(Exception("Failed to load espectador"))
                 }
             }
 
-            override fun onFailure(res: Call<Espectador>, t: Throwable) {
+            override fun onFailure(res: Call<Espectadores>, t: Throwable) {
                 failure(t)
             }
         })
@@ -108,32 +110,32 @@ object EspectadorRepository {
     }
 
     fun loginEspectador(espectador: Espectador, success: (Espectador?) -> Unit, failure: (Throwable) -> Unit) {
-        service.loginEspectador(espectador).enqueue(object : Callback<Espectador> {
-            override fun onResponse(res: Call<Espectador>, response: Response<Espectador>) {
+        service.loginEspectador(espectador).enqueue(object : Callback<Espectadores> {
+            override fun onResponse(res: Call<Espectadores>, response: Response<Espectadores>) {
                 if (response.isSuccessful) {
-                    success(response.body())
+                    success(response.body()?.get(0))
                 } else {
                     failure(Exception("Failed to login espectador"))
                 }
             }
 
-            override fun onFailure(res: Call<Espectador>, t: Throwable) {
+            override fun onFailure(res: Call<Espectadores>, t: Throwable) {
                 failure(t)
             }
         })
     }
 
     fun registerEspectador(espectador: Espectador, success: (Espectador?) -> Unit, failure: (Throwable) -> Unit) {
-        service.registerEspectador(espectador).enqueue(object : Callback<Espectador> {
-            override fun onResponse(res: Call<Espectador>, response: Response<Espectador>) {
+        service.registerEspectador(espectador).enqueue(object : Callback<Espectadores> {
+            override fun onResponse(res: Call<Espectadores>, response: Response<Espectadores>) {
                 if (response.isSuccessful) {
-                    success(response.body())
+                    success(response.body()?.get(0))
                 } else {
                     failure(Exception("Failed to register espectador"))
                 }
             }
 
-            override fun onFailure(res: Call<Espectador>, t: Throwable) {
+            override fun onFailure(res: Call<Espectadores>, t: Throwable) {
                 failure(t)
             }
         })

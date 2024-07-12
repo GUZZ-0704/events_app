@@ -11,8 +11,8 @@ object TipoTicketRepository {
     val instanceRetrofit = RetrofitRepository.getRetrofitInstance()
     val service = instanceRetrofit.create(APITipoTicket::class.java)
 
-    fun getAllTipoTickets(token: String, success: (TipoTickets?) -> Unit, failure: (Throwable) -> Unit) {
-        service.getAllTipoTickets(token).enqueue(object : Callback<TipoTickets> {
+    fun getAllTipoTickets(success: (TipoTickets?) -> Unit, failure: (Throwable) -> Unit) {
+        service.getAllTipoTickets().enqueue(object : Callback<TipoTickets> {
             override fun onResponse(res: Call<TipoTickets>, response: Response<TipoTickets>) {
                 if (response.isSuccessful) {
                     success(response.body())

@@ -11,4 +11,6 @@ class Lugar(
         return "Lugar(nombrelugar='$nombrelugar', direccion='$direccion', capacidad=$capacidad)"
     }
     var idlugar: Int = 0
+
+    constructor(): this("", "", 0)
 }
