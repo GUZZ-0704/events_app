@@ -44,14 +44,20 @@ class EventDetailActivity : AppCompatActivity(), PhotoAdapter.OnPhotoClickListen
             insets
         }
         val token= PreferencesRepository.getToken(this)
+        Log.d("EventDetailActivity", "Token: $token")
         if (token != null) {
             getEspectador(token)
         }
         var eventId = intent.getIntExtra("eventID", -1)
+        Log.d("EventDetailActivity", "Event ID: $eventId")
         if (eventId != -1) {
             model.loadEvent(eventId)
+            Log.d("EventDetailActivity", "Loading event")
             model.loadPlace(eventId)
-            model.loadTypeTickets(token!!)
+            Log.d("EventDetailActivity", "Loading place")
+
+            model.loadTypeTickets()
+            Log.d("EventDetailActivity", "Loading tickets")
         }
         setupEventListeners()
         setupRecyclerView()
@@ -104,10 +110,17 @@ class EventDetailActivity : AppCompatActivity(), PhotoAdapter.OnPhotoClickListen
 
     private fun setupEventListeners() {
         binding.apply {
+            txtCantidad.isEnabled = false
             btnMakeReservation.setOnClickListener {
                 layoutReservation.visibility = android.view.View.VISIBLE
             }
             btnReservar.setOnClickListener {
+                val token = PreferencesRepository.getToken(this@EventDetailActivity)
+                if (token == null) {
+                    layoutReservation.visibility = android.view.View.GONE
+                    Toast.makeText(this@EventDetailActivity, "Por favor, inicie sesión", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
                 // Validar que los campos no estén vacíos
                 if (txtPrecio.text.isEmpty() || txtCantidad.text.isEmpty()) {
                     layoutReservation.visibility = android.view.View.GONE
@@ -116,9 +129,8 @@ class EventDetailActivity : AppCompatActivity(), PhotoAdapter.OnPhotoClickListen
                 }
                 val opcion = rdgTipoTicket.checkedRadioButtonId
                 Log.d("EventDetailActivity", "Opcion: $opcion")
-                val precio = txtPrecio.text.toString().toDouble()
                 val cantidad = txtCantidad.text.toString().toInt()
-                val token = PreferencesRepository.getToken(this@EventDetailActivity)
+
                 val eventoId = intent.getIntExtra("eventID", -1)
                 if (token != null && eventoId != -1) {
                     // Utilizar coroutine para manejar retraso entre solicitudes

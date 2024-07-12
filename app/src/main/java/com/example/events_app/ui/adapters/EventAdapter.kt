@@ -57,5 +57,7 @@ class EventAdapter (
 
     interface OnEventoClickListener {
         fun onEventoClick(event: Evento)
+        fun onEditEventClick(event: Evento)
+        fun onDeleteEventClick(event: Evento)
     }
 }

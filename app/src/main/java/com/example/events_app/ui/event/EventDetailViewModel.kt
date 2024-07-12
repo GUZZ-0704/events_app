@@ -60,8 +60,8 @@ class EventDetailViewModel: ViewModel() {
             })
     }
 
-    fun loadTypeTickets(token : String) {
-        TipoTicketRepository.getAllTipoTickets(token,
+    fun loadTypeTickets() {
+        TipoTicketRepository.getAllTipoTickets(
             success = {
                 _TipoTickets.value = it
             },

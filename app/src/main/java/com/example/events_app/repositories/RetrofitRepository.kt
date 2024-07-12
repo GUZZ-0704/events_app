@@ -29,7 +29,7 @@ object RetrofitRepository {
 
 
         return Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:3000/api/")
+            .baseUrl("https://events-sys-express-api.onrender.com/api/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -50,7 +50,7 @@ object RetrofitRepository {
 
 
         return Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:3000/api/")
+            .baseUrl("https://events-sys-express-api.onrender.com/api/")
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
