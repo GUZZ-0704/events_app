@@ -28,16 +28,16 @@ object LugarRepository {
     }
 
     fun getLugar(lugarId: Int, success: (Lugar?) -> Unit, failure: (Throwable) -> Unit) {
-        service.getLugarById(lugarId).enqueue(object : Callback<Lugar> {
-            override fun onResponse(res: Call<Lugar>, response: Response<Lugar>) {
+        service.getLugarById(lugarId).enqueue(object : Callback<Lugares> {
+            override fun onResponse(res: Call<Lugares>, response: Response<Lugares>) {
                 if (response.isSuccessful) {
-                    success(response.body())
+                    success(response.body()?.get(0))
                 } else {
                     failure(Exception("Failed to load lugar"))
                 }
             }
 
-            override fun onFailure(res: Call<Lugar>, t: Throwable) {
+            override fun onFailure(res: Call<Lugares>, t: Throwable) {
                 failure(t)
             }
         })

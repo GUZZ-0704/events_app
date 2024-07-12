@@ -9,10 +9,14 @@ class Evento (
     var idcliente: Int,
     var idlugar: Int,
     var costototal: Double,
-    var cupos: Int
+    var cupos: Int,
+    var logo : String,
+    var fotos: ArrayList<String>
 ) {
     override fun toString(): String {
         return "Evento(nombreevento='$nombreevento', fechainicio='$fechainicio', fechafin='$fechafin', idcliente=$idcliente, idlugar=$idlugar, costototal=$costototal, cupos=$cupos)"
     }
     var idevento: Int = 0
+
+    constructor(): this("", "", "", 0, 0, 0.0, 0, "", ArrayList())
 }

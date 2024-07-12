@@ -20,7 +20,7 @@ interface APILugar {
     @GET("lugares/{id}")
     fun getLugarById(
         @Path("id") id: Int
-    ): Call<Lugar>
+    ): Call<Lugares>
 
     @POST("lugares")
     fun createLugar(

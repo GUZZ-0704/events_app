@@ -18,20 +18,20 @@ interface APIEvento {
     @GET("eventos/{id}")
     fun getEventoById(
         @Path("id") id: Int
-    ): Call<Evento>
+    ): Call<Eventos>
 
     @POST("eventos")
     fun addEvento(
         @Header("Authorization") token: String,
         @Body evento: Evento
-    ): Call<Evento>
+    ): Call<Eventos>
 
     @PUT("eventos/{id}")
     fun updateEvento(
         @Header("Authorization") token: String,
         @Body evento: Evento,
         @Path("id") id: Int
-    ): Call<Evento>
+    ): Call<Eventos>
 
     @DELETE("eventos/{id}")
     fun deleteEvento(
@@ -65,13 +65,13 @@ interface APIEvento {
         @Header("Authorization") token: String,
         @Path("idevento") idevento: Int,
         @Path("idlugar") idlugar: Int
-    ): Call<Evento>
+    ): Call<Eventos>
 
     @GET("patrocinadores_evento/{id}")
     fun getPatrocinadoresEvento(
         @Header("Authorization") token: String,
         @Path("id") id: Int
-    ): Call<Evento>
+    ): Call<Eventos>
 
 
 }
